@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== PDO For Wordpress ===
 Contributors: Justin Adie (http://rathercurious.net)
 Tags: database, PDO, sqlite, SQLite
 Requires at least: 2.3.0

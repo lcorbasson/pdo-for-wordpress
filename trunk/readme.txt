@@ -10,7 +10,7 @@ This 'plugin' enables WP to use databases supported by PHP's PDO abstraction lay
 
 == Description ==
 
-Wordpress has for a long time, and for good reasons, been locked into using mysql as its database storage engine.  There is a good discussion of 'why' here.
+Wordpress has for a long time, and for good reasons, been locked into using mysql as its database storage engine.  There is a good discussion of 'why' [in the codex](http://codex.wordpress.org/Using_Alternative_Databases#Solutions/ "Codex Discussion")
 
 But this design choice has ramifications; not least because mysql's implementation of sql is not standard.  Even with the use of the EZSQL abstraction layer bundled with Wordpress, this makes plugging in other databases very difficult.
 

@@ -1,4 +1,8 @@
 <?php
+/*
+ * Version: 1.0.0
+ * Author: Justin Adie
+ */
 /**
  * @package PDO_For_Wordpress
  * @version $Id$

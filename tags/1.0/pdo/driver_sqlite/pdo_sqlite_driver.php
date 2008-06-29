@@ -56,6 +56,7 @@ class pdo_sqlite_driver{
 				$this->rewrite_date_add();
 				$this->rewrite_date_sub();
 				$this->rewriteNowUsage();
+				$this->deleteIndexHints();
 				$this->rewrite_md5();
 				$this->rewrite_rand();
 			break;
@@ -544,6 +545,16 @@ class pdo_sqlite_driver{
 	private function rewriteBadlyFormedDates(){
 		$pattern = '/([12]\d{3,}-\d{2}-)(\d )/ims';
 		$this->_query = preg_replace($pattern, '${1}0$2', $this->_query);
+	}
+	
+	/**
+	 * function to remove unsupported index hinting from mysql queries
+	 * 
+	 * @return void 
+	 */
+	private function deleteIndexHints(){
+		$pattern = '/use\s+index\s*\(.*?\)/i';
+		$this->_query = preg_replace($pattern, '', $this->_query);
 	}
 }
 ?>

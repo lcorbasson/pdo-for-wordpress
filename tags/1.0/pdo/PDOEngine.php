@@ -199,7 +199,7 @@ HTML;
 		}		
 		//dump some queries to a text file for testing
 		if (defined('PDO_DEBUG') && PDO_DEBUG === true){
-			file_put_contents(ABSPATH.'wp-content/database/debug.txt', $this->getErrorMessage(), FILE_APPEND);	
+			file_put_contents(ABSPATH.'wp-content/database/debug.txt', $this->getDebugInfo(), FILE_APPEND);	
 		}	
 	}	
 	
@@ -273,6 +273,19 @@ HTML;
 		$this->isError = false;
 		$this->errorMessages = array();
 		return $output."<pre>".print_r($this, true)."</pre>";
+	}
+	
+	/**
+	 * method to return a plain text dump of queries for output to a text file
+	 * 
+	 * @return string: plain text set of queries
+	 */
+	public function getDebugInfo(){
+		$output = '';
+		foreach ($this->queries as $q){
+			$output .= $q ."\r\n";
+		}
+		return $output;
 	}
 	
 	/**

@@ -22,7 +22,7 @@ PDO For Wordpress is a step towards eliminating this difficulty.  Think about th
 1.	passing the output back to the language specific layer to do any necessary post-processing, and then:
 1.	returning the whole thing to the EZSQL abstraction layer so that Wordpress doesn't know that anything has gone awry
 
-There are limitations and imperfections within this plugin.  See below for details.
+See below/other notes for details of known limitations
 
 == Installation ==
 
@@ -106,13 +106,15 @@ There are no screenshots
 *	consider using WP's own error handling class  
 *	consider revising the prepare->execute syntax to a pure query type syntax for certain types of query  
 *	separate some of the sqlite type functionality out of PDOEngine.php.
+*	consider altering the directory structure so that the majority of files can sit under the plugins directory and use the auto-updater.  
+*	or write an updater plugin (is that possible if they come from different sources?)
 
 == Attributions ==
 Early versions of this plugin used a complete replacement for the WP abstraction layer.  Thanks to Ulf Ninow for pointing out the value of inheritance to me and thus hugely simplifying the upkeep of the plugin.
 
 == Version Information ==
-Version 1.0.1 - 2008 June 28
-Fixed bug where the comments did not display in Manage Comments due to the use of index hints in the mysql sql
-
 Version 1.0.2 - 2008 June 29
 version control issue.  not all files were committed to svn in 1.0.1
+
+Version 1.0.1 - 2008 June 28
+Fixed bug where the comments did not display in Manage Comments due to the use of index hints in the mysql sql

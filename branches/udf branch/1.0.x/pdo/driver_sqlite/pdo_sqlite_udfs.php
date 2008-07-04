@@ -16,7 +16,9 @@ class PDO_SQLITE_UDFS{
 								'second'=>'second',
 								'minute'=>'minute',
 								'hour'=>'hour',
-								'date_format'=>'dateformat'
+								'date_format'=>'dateformat',
+								'from_unixtimestamp'=>'from_unixtimestamp',
+								'unix_timestamp'=>'unix_timestamp'
 								);
 								
 	public function month($field){
@@ -35,6 +37,18 @@ class PDO_SQLITE_UDFS{
 	}
 	public function unix_timestamp($field){
 		return strtotime($field);
+	}
+	public function from_unixtimestamp($field, $format=null){
+		$t = date("Y-m-d H:i:s", $field);
+		if (is_null($format)){
+			return $t;
+		} else {
+			$return = $this->dateformat($t, $format);
+			return $return;
+		}
+	}
+	public function unix_timestamp(){
+		return time();
 	}
 	public function second($field){
 		$t = strtotime($field);

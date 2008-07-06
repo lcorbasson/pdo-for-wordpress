@@ -14,7 +14,7 @@ Wordpress has for a long time, and for good reasons, been locked into using mysq
 
 But this design choice has ramifications; not least because mysql's implementation of sql is not standard.  Even with the use of the EZSQL abstraction layer bundled with Wordpress, this makes plugging in other databases very difficult.
 
-PDO For Wordpress is a step towards eliminating this difficulty.  Think about this 'plugin' in four steps:
+PDO For Wordpress is a step towards eliminating this difficulty.  Think about this 'plugin' in five steps:
 
 1.	the basic layer takes all queries and separates out the variables from the language.  It replaces each variable with a placeholder as well as stripping mysql specific 'nasties' like the slash-escaping and backticks.
 1.	then a language specific driver steps in and rewrites the query to use its own native constructs.

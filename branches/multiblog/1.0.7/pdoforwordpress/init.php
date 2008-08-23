@@ -63,6 +63,7 @@ HTML
 	//}
 }
 
+
 if ( version_compare( '5.0', phpversion(), '>' ) ) {
 	pdo_log_error('Incorrect PHP Version', 'Your server is running PHP version ' . phpversion() . ' but this version of WordPress requires at least 5.0.');
 }
@@ -133,13 +134,23 @@ function _mysql_get_server_info(){
 }
 
 if (defined('WP_CONTENT_DIR')){
-	define ("PDODIR", WP_CONTENT_DIR .'/pdo/');
-	define ('FQDBDIR', WP_CONTENT_DIR .'/database/');
+	define ("PDODIR", WP_CONTENT_DIR .'/plugins/pdoforwordpress/');
 } else {
-	define ("PDODIR", ABSPATH.'/wp-content/pdo/');
-	define ('FQDBDIR', ABSPATH .'/wp-content/database/');
+	define ("PDODIR", ABSPATH.'/wp-content/plugins/pdoforwordpress/');
+	define('WP_CONTENT_DIR', ABSPATH . '/wp-content/');
 }
-define ('FQDB', FQDBDIR .'MyBlog.sqlite');
+
+if (!file_exists(WP_CONTENT_DIR . '/db.php')){
+	file_put_contents(WP_CONTENT_DIR . '/db.php','<?php require_once WP_CONTENT_DIR . "/plugins/pdoforwordpress/init.php" ; ?>' ,LOCK_EX);
+}
+
+//for multiblog aware installations...
+$curBlog = $_SERVER['SERVER_NAME'];
+//strip the www prefix
+$curBlog = preg_replace ('/^\s*w*\./i', '', $curBlog);
+
+define('FQDBDIR', ABSPATH . "/databases/");
+define ('FQDB', FQDBDIR . $curBlog. '.sqlite');
 
 //we need to call this now, to instantiate the $wpdb object
 //before we do the file rewrites.

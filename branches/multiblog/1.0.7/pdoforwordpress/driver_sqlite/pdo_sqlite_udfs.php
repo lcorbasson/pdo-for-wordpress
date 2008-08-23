@@ -204,6 +204,5 @@ class PDO_SQLITE_UDFS{
 			$pdo->sqliteCreateFunction($f, array($this, $t));
 		}
 	}
-	
 }
 ?>

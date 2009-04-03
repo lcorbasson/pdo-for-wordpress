@@ -3,8 +3,8 @@ Contributors: Justin Adie (http://rathercurious.net)
 Tags: database, PDO, sqlite, SQLite
 Requires at least: 2.3.0
 Donate Link: rathercurious.net
-Tested up to: 2.5.1
-Stable tag: 1.0.2
+Tested up to: 2.7.1
+Stable tag: 2.0.0
 
 This 'plugin' enables WP to use databases supported by PHP's PDO abstraction layer. Currently, mysql and sqlite drivers are provided.
 
@@ -47,11 +47,11 @@ So ... to install PDO For Wordpress please do the following:
 
 	this line of code is placed directly after the define('COLLATE',''); line:
 
-		`define('DB_TYPE', 'sqlite');	//mysql or sqlite`
+		define('DB_TYPE', 'sqlite');	//mysql or sqlite`
 
 	Note: currently only mysql and sqlite are supported. I hope that more flavours will appear soon.
 
-	As part of the general wordpress installation you should define your secret key too.  (line 14 of the wp-config file).
+	As part of the general wordpress installation you should define your secret keys too (in wp-config.php). 
 
 and that's it.  two steps.  
 
@@ -76,7 +76,7 @@ Currently the basic layer supports any database that is supported by PDO.
 
 Note that through the PDO_ODBC extension, all ODBC supported databases are also supported, subject to drivers being available
 
-However each database needs its own driver and currently the only drivers written for this plugin are for 
+HOWEVER each database needs its own driver and currently the only drivers written for this plugin are for 
 
 *	sqlite and   
 *	mysql
@@ -94,18 +94,16 @@ There are no screenshots
 *	this plugin requires PHP 5.0 + as it uses PDO.  There is no workaround.
 *	the database schema cannot be upgraded through the WP automatic systems.
 *	some plugins will not install as they use the WP upgrade functions to build/upgrade their databases
-*	some plugins will not install/work as they do use native mysql calls rather than the WP abstraction layer
+*	some plugins will not install/work as they do use native mysql calls rather than the WP abstraction layer.  This is contrary to WordPress API guidelines.
 
 == To Do ==
 * 	parameterise the database location to allow people to change the name and the location of the database
-*	write a routine to allow upgrades/changes to the database schema.  This is not easy as sqlite does not support the alter syntax to the same extent that mysql does.  [We could just fudge this and leave old columns in the table]
-*	examine and consider replacing some of the clunky code in the sqlite engine to use user defined functions in some cases (e.g. dates and if).  
+*	write a routine to allow upgrades/changes to the database schema.  This is not easy as sqlite does not support the alter syntax to the same extent that mysql does.  [We could just fudge this and leave old columns in the table]*	examine and consider replacing some of the clunky code in the sqlite engine to use user defined functions in some cases (e.g. dates and if).  
 *	remove some of the clunky debug code
 *	consider adding collation support.
 *	remove inefficiency of object recreation at the end of the post-processing. it should be easier to keep the pdo resultset as an array of objects to start with.
 *	consider using WP's own error handling class  
 *	consider revising the prepare->execute syntax to a pure query type syntax for certain types of query  
-*	separate some of the sqlite type functionality out of PDOEngine.php.
 *	consider altering the directory structure so that the majority of files can sit under the plugins directory and use the auto-updater.  
 *	or write an updater plugin (is that possible if they come from different sources?)
 
@@ -113,6 +111,10 @@ There are no screenshots
 Early versions of this plugin used a complete replacement for the WP abstraction layer.  Thanks to Ulf Ninow for pointing out the value of inheritance to me and thus hugely simplifying the upkeep of the plugin.
 
 == Version Information ==
+Version 2.0.0 - 2009 April 03
+overhaul of the sqlite code to use UDF's in place of regex (for the most part)
+overhaul of the base class to reuse the wpdb class by inheritance
+
 Version 1.0.2 - 2008 June 29
 version control issue.  not all files were committed to svn in 1.0.1
 

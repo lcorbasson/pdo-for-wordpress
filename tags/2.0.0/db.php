@@ -10,7 +10,7 @@ Description: This 'plugin' enables WP to use databases supported by PHP's PDO ab
 
 /**
  * @package PDO_For_Wordpress
- * @version $Id: db.php 52332 2008-06-29 09:23:05Z jpadie $
+ * @version $Id$
  * @author	Justin Adie, rathercurious.net
  */
  

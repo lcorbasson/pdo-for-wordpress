@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PDO_For_Wordpress
- * @version $Id: db.php 51767 2008-06-24 11:41:21Z jpadie $
+ * @version $Id$
  * @author	Justin Adie, rathercurious.net
  */
  

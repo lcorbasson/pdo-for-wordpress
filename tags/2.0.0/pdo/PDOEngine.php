@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PDO_For_Wordpress
- * @version $Id: PDOEngine.php 52325 2008-06-29 08:01:23Z jpadie $
+ * @version $Id$
  * @author	Justin Adie, rathercurious.net
  */
  

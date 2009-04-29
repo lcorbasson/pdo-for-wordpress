@@ -2,7 +2,7 @@
 /*
 Plugin Name: PDO For Wordpress
 Plugin URI: rathercurious.net
-Version: 2.0.0
+Version: 2.1.0
 Author: Justin Adie
 Author URI: rathercurious.net
 Description: This 'plugin' enables WP to use databases supported by PHP's PDO abstraction layer. Currently, mysql and sqlite drivers are provided.

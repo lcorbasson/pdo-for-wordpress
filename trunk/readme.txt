@@ -4,7 +4,7 @@ Tags: database, PDO, sqlite, SQLite
 Requires at least: 2.3.0
 Donate Link: rathercurious.net
 Tested up to: 2.7.1
-Stable tag: 2.2.0
+Stable tag: 2.3.0
 
 This 'plugin' enables WP to use databases supported by PHP's PDO abstraction layer. Currently, mysql and sqlite drivers are provided.
 
@@ -56,7 +56,7 @@ So ... to install PDO For Wordpress please do the following:
 and that's it.  two steps.  
 
 The next time you load your wordpress installation it will automatically create the database and take you through the basic Wordpress installation routine.
-
+If you have problems with the installation you should receive a meaningful error messsage.  If not, the most common error by far is permissions.  You MUST make sure that php can read/write to wp-content/database.
 
 == Frequently Asked Questions ==
 
@@ -111,6 +111,10 @@ There are no screenshots
 Early versions of this plugin used a complete replacement for the WP abstraction layer.  Thanks to Ulf Ninow for pointing out the value of inheritance to me and thus hugely simplifying the upkeep of the plugin.
 
 == Version Information ==
+Version 2.3.0 - 2000 May 02
+added some more checking into the install routine to avoid perms problems
+cleaned up the date handling thanks to Nicholas Schmid.  This will improve permalinks
+
 Version 2.2.0 - 2009 April 29
 create new tag and recommit because tag 2.1.0 was corrupt
 

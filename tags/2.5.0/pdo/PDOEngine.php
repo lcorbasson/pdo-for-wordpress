@@ -104,7 +104,7 @@ class PDO_Engine{
 					$count = $s->fetchColumn(0);
 					
 					$s = null; //release the recordset
-					if ($count === 0){
+					if ($count < 2){
 						$this->installDB();
 					}
 				} else {

@@ -3,8 +3,8 @@ Contributors: Justin Adie (http://rathercurious.net)
 Tags: database, PDO, sqlite, SQLite
 Requires at least: 2.3.0
 Donate Link: rathercurious.net
-Tested up to: 2.7.1
-Stable tag: 2.5.0
+Tested up to: 2.8.0 (beta)
+Stable tag: 2.6.0
 
 This 'plugin' enables WP to use databases supported by PHP's PDO abstraction layer. Currently, mysql and sqlite drivers are provided.
 
@@ -111,6 +111,10 @@ There are no screenshots
 Early versions of this plugin used a complete replacement for the WP abstraction layer.  Thanks to Ulf Ninow for pointing out the value of inheritance to me and thus hugely simplifying the upkeep of the plugin.
 
 == Version Information ==
+Version 2.6.0 - 2009 June 01
+create a new query type to handle insert multiples
+fix bug with install routine and sqlite schema changes
+
 Version 2.5.0 - 2009 May 04
 [version 2.0.0 + has had a bunch of problems in it (inc 2.4.0).  how these crept in is unknown.]
 fixes inconsistency between string and integer based data comparisons in sqlite

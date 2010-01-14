@@ -3,8 +3,8 @@ Contributors: Justin Adie (http://rathercurious.net)
 Tags: database, PDO, sqlite, SQLite
 Requires at least: 2.3.0
 Donate Link: rathercurious.net
-Tested up to: 2.8.0
-Stable tag: 2.6.1
+Tested up to: 2.9.1
+Stable tag: 2.7.0
 
 This 'plugin' enables WP to use databases supported by PHP's PDO abstraction layer. Currently, mysql and sqlite drivers are provided.
 
@@ -17,9 +17,8 @@ But this design choice has ramifications; not least because mysql's implementati
 PDO For Wordpress is a step towards eliminating this difficulty.  Think about this 'plugin' in four steps:
 
 1.	the basic layer takes all queries and separates out the variables from the language.  It replaces each variable with a placeholder as well as stripping mysql specific 'nasties' like the slash-escaping and backticks.
-1.	then a language specific driver steps in and rewrites the query to use its own native constructs.
+1.	then a language specific driver steps in and rewrites the query to use its own native constructs or (in the case of SQLite) pushes the query into some special user-defined functions
 1.	the basic layer then puts it all back together and runs the query, finally ...
-1.	passing the output back to the language specific layer to do any necessary post-processing, and then:
 1.	returning the whole thing to the EZSQL abstraction layer so that Wordpress doesn't know that anything has gone awry
 
 See below/other notes for details of known limitations
@@ -64,15 +63,15 @@ What databases are supported?
 
 Currently the basic layer supports any database that is supported by PDO.
 
-*	MS SQL Server (PDO) â€” Microsoft SQL Server and Sybase Functions (PDO_DBLIB)  
-*	Firebird/Interbase (PDO) â€” Firebird/Interbase Functions (PDO_FIREBIRD)  
-*	IBM (PDO) â€” IBM Functions (PDO_IBM)  
-*	Informix (PDO) â€” Informix Functions (PDO_INFORMIX)  
-*	MySQL (PDO) â€” MySQL Functions (PDO_MYSQL)  
-*	Oracle (PDO) â€” Oracle Functions (PDO_OCI)  
-*	ODBC and DB2 (PDO) â€” ODBC and DB2 Functions (PDO_ODBC)  
-*	PostgreSQL (PDO) â€” PostgreSQL Functions (PDO_PGSQL)  
-*	SQLite (PDO) â€” SQLite Functions (PDO_SQLITE)  
+*	MS SQL Server (PDO) â  Microsoft SQL Server and Sybase Functions (PDO_DBLIB)  
+*	Firebird/Interbase (PDO) â  Firebird/Interbase Functions (PDO_FIREBIRD)  
+*	IBM (PDO) â  IBM Functions (PDO_IBM)  
+*	Informix (PDO) â  Informix Functions (PDO_INFORMIX)  
+*	MySQL (PDO) â  MySQL Functions (PDO_MYSQL)  
+*	Oracle (PDO) â  Oracle Functions (PDO_OCI)  
+*	ODBC and DB2 (PDO) â  ODBC and DB2 Functions (PDO_ODBC)  
+*	PostgreSQL (PDO) â  PostgreSQL Functions (PDO_PGSQL)  
+*	SQLite (PDO) â  SQLite Functions (PDO_SQLITE)  
 
 Note that through the PDO_ODBC extension, all ODBC supported databases are also supported, subject to drivers being available
 
@@ -92,8 +91,8 @@ There are no screenshots
 
 == Known Limitations ==
 *	this plugin requires PHP 5.0 + as it uses PDO.  There is no workaround.
-*	the database schema cannot be upgraded through the WP automatic systems.
-*	some plugins will not install as they use the WP upgrade functions to build/upgrade their databases
+*	the database schema cannot be upgraded through the WP automatic systems. I am working on this: it is non-trivial
+*	some plugins will not upgrade as they use the WP upgrade functions to upgrade their databases.  Create statements issued through dbdelta() WILL work, however
 *	some plugins will not install/work as they do use native mysql calls rather than the WP abstraction layer.  This is contrary to WordPress API guidelines.
 
 == To Do ==
@@ -111,6 +110,13 @@ There are no screenshots
 Early versions of this plugin used a complete replacement for the WP abstraction layer.  Thanks to Ulf Ninow for pointing out the value of inheritance to me and thus hugely simplifying the upkeep of the plugin.
 
 == Version Information ==
+version 2.7.0 - 2010 January 13
+changes in the WP installation code broke this plugin.  Compatibility is now fixed through a rewrite of wp_install
+changes in 2.8.1 broke some other functionality.  Essentially greater use of mysql >=4.1 functions means that it's a constant game of catch up to rewrite.  Really the WP core team should go back to basics and use pure SQL ANSI syntax (particularly if the rumours about migration to MS SQL are true)
+Move to UDF's in place of a whole bunch of regex work.  this should speed up execution.
+and other minor changes.
+still have to fix up the debug code.  it's horribly clunky but we need very accurate feedback to debug failing queries...  
+
 Version 2.6.1 - 2009 June 13
 fix error in Optimize queries - thanks fnumatic
 fix small error in multi-inserts leading to problem with importing from existing wordpress installation
